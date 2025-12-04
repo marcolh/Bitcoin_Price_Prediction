@@ -12,7 +12,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.svm import SVC
-#from xgboost import XGBXclassifier
+from xgboost import XGBRegressor
+from sklearn.metrics import mean_squared_error
 from sklearn import metrics
 
 import warnings
@@ -49,4 +50,4 @@ class CleanData:
         return X_train, X_test, y_train, y_test
 
     def TrainPrediction(self, X_train, X_test, y_train, y_test):
-        
+        model = XGBRegressor(objective='reg:squarederror', n_estimator=100)
