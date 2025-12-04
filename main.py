@@ -1,4 +1,8 @@
 
+"""
+Ta
+"""
+
 #--------------------------------------------------------------------------
 # Import Libraries
 #--------------------------------------------------------------------------
@@ -29,4 +33,14 @@ try:
 except Exception as e:
     print("Fail")
     print(f"Error: {e}")
+    exit(1)
+
+try:
+    features = ['Date','Open','High','Low','Adj Close','Volume'] 
+    target = 'Close'
+    X_train, X_test, y_train, y_test = dc.SplitData(df_bitcoin_data, features, target)
+    print("train and test split has been completed successfully")
+except Exception as e:
+    print("the automation failed to complete the train and test split")
+    print(f"Error:{e}")
     exit(1)

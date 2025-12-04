@@ -35,8 +35,18 @@ class CleanData:
 
     def ReadData(self):
         df_bitcoin_data = pl.read_csv(self.str_data)
-        int_null_values = 
+        print(df_bitcoin_data.describe())
+        int_null_values = df_bitcoin_data.null_count()
+        sns.boxplot(df_bitcoin_data['Close'])
 
         return df_bitcoin_data
-    
-    def 
+
+    def SplitData(self, df_bitcoin_data, features, target):
+        X = df_bitcoin_data[features]
+        y = df_bitcoin_data[target]
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
+
+        return X_train, X_test, y_train, y_test
+
+    def TrainPrediction(self, X_train, X_test, y_train, y_test):
+        
